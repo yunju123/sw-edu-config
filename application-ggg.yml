@@ -1,0 +1,59 @@
+properties:
+  name: ggg
+  number: 41
+  wishlist: AppleWatch
+  term: 0
+  division: AI서비스프론티어TF
+  telno: 010-9777-6297
+
+
+spring:
+  application:
+    name: ${properties.name}
+  profiles:
+    active: default
+  cloud:
+    config:
+      enabled: true
+#  config:
+#    import: "configserver:http://sw-edu-config.211-34-231-82.nip.io"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://sw-edu-eureka.211-34-231-82.nip.io/eureka
+    enabled: false
+  instance:
+    ip-address: X.X.X.X
+    instance-id: ${eureka.instance.ip-address}
+    appname: ${properties.name}
+    prefer-ip-address: true
+
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health,metrics,env,info,refresh
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    refresh:
+      enabled: true
+    info:
+      enabled: true
+  info:
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+    os:
+      enabled: true
+    java:
+      enabled: true
+  health:
+    defaults:
+      enabled: false
+
